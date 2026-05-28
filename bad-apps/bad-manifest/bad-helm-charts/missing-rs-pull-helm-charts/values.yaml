@@ -1,0 +1,5 @@
+replicaCount: three
+image:
+  repository: nginx
+  tag: latest
+  pullPolicy: Always

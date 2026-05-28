@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: git-appset-missing-rs-svc-pull-helm-charts 
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/opsmx-cnoe/naveen
+        revision: main 
+        directories:
+          - path: bad-apps/bad-manifest/bad-helm-charts/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/opsmx-cnoe/naveen
+        targetRevision: main 
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - values.yaml
+      destination:
+        server: https://dev-vcluster.opencd.opsmx.org:443
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

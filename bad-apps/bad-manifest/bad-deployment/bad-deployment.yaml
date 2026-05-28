@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bad-app
+  template:
+    metadata:
+      labels:
+        app: bad-app
+    spec:
+      containers:
+        - name: bad-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: ENV_VAR_WITHOUT_VALUE
+              value: somedefaultvalue

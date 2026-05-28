@@ -1,0 +1,6 @@
+replicaCount:  "three" 
+
+image:
+  repository: mycompany/myapp
+  tag: latest
+  pullPolicy: Always  

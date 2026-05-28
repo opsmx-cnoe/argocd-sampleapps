@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: bad-job
+  namespace: default
+  annotations:
+    argocd.argoproj.io/sync-options: Force=true,Replace=true
+    from: argonaut
+spec:
+  template:
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: ["/bin/sh", "-c"', "exit 0"] 
+      restartPolicy: Never
+  backoffLimit: 1

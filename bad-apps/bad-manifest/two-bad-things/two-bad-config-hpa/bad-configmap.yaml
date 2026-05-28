@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bad-config
+  namespace: default
+data:
+  key1: value1
+  key2: |
+    This is a multi-line
+    string without a proper ending
+    indentation is off
+    - yaml: bad
+      another: "value"
+    missing colon
+  key3 value3  
+

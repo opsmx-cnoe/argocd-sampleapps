@@ -1,0 +1,6 @@
+apiVersion: v3  
+name: mychart
+version: 0.0  
+description: 12345 
+type: service 
+appVersion: 1.0.0

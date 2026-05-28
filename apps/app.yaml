@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  labels:
+    name: naveen-apps
+  name: navee-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://dev-vcluster.opencd.opsmx.org:443
+  project: default
+  source:
+    directory:
+      recurse: true
+    path: others\cm
+    repoURL: https://github.com/opsmx-cnoe/naveen
+    targetRevision: main
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    retry:
+      backoff:

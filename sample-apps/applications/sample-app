@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/opsmx-cnoe/naveen.git'
+    path: sample-apps/applications
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: single-src
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

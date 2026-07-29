@@ -4,7 +4,7 @@ metadata:
   name: bad-deployment
   namespace: default
 spec:
-  replicas: one
+  replicas: 1
   selector:
     matchLabels:
       app: bad-app
